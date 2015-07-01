@@ -1,0 +1,67 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{isLoggedIn ? 'Edit' : 'Info'}}</h3>
+  </div>
+  <div class="panel-body">
+    
+<form ng-cloak class="form-horizontal" novalidate ng-repeat="user in users" name="EditForm" id="edit-form" method="post" action="">
+  
+  <fieldset>
+    <legend>Employee</legend>
+    <div class="form-group">
+      <label for="first" class="col-xs-12 col-sm-2 col-md-2 control-label">First</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <input ng-disabled="!isLoggedIn" class="form-control" type="text" maxlength="100" ng-model="user.first" value="{{user.first}}" focus-me="true" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="last" class="col-xs-12 col-sm-2 col-md-2 control-label">Last</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <input ng-disabled="!isLoggedIn" class="form-control" type="text" maxlength="100" ng-model="user.last" value="{{user.last}}" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="title" class="col-xs-12 col-sm-2 col-md-2 control-label">Title</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <input ng-disabled="!isLoggedIn" class="form-control" type="text" maxlength="100" ng-model="user.title" value="{{user.title}}" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="location" class="col-xs-12 col-sm-2 col-md-2 control-label">Location</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <select ng-disabled="!isLoggedIn" class="form-control" ng-model="user.location" required >
+          <option value="Austin">Austin</option>
+          <option value="Dallas">Dallas</option>
+          <option value="Houston">Houston</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email" class="col-xs-12 col-sm-2 col-md-2 control-label">Email</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <input ng-disabled="!isLoggedIn" class="form-control" type="text" name="email" maxlength="100" ng-model="user.email" value="{{user.email}}" check-available input-mask-email required />
+        <div class="user-help text-danger small" ng-show="EditForm.email.$dirty && EditForm.email.$error.emailAvailable">
+              <span>Email already in use.</span>
+          </div> 
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phone" class="col-xs-12 col-sm-2 col-md-2 control-label">Phone</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+      	<input ng-disabled="!isLoggedIn" class="form-control" type="text" name="phone" ng-model="user.phone" value="{{user.phone}}" input-mask-phone check-available required />
+        <div class="user-help text-danger small" ng-show="EditForm.phone.$dirty && EditForm.phone.$error.phoneAvailable">
+              <span ng-show="EditForm.phone.$error.phoneAvailable">Phone already in use.</span>
+          </div>
+      </div>
+    </div>
+    <div class="form-group">
+    	<div class="col-xs-12 col-sm-6 col-md-6 col-sm-offset-2 col-md-offset-2">
+        	<button type="button" class="btn btn-primary" ng-show="isLoggedIn" ng-disabled="EditForm.$invalid || isUnchanged(user)" id="edit-btn" ng-click="update(user)">Update <span class="glyphicon glyphicon-floppy-disk"></span></button>
+            <button type="button" class="btn btn-danger" ng-show="isLoggedIn" ng-click="delete(user)">Delete <span class="glyphicon glyphicon-trash"></span></button>
+            <a href="#/" class="btn btn-link">{{isLoggedIn ? "Cancel" : "Back"}}</a>
+        </div>
+    </div>
+    </fieldset>
+  </form>
+</div>
+</div>

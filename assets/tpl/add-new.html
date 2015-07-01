@@ -1,0 +1,65 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Add</h3>
+  </div>
+  <div class="panel-body">
+    
+<form class="form-horizontal" novalidate name="AddNewForm" id="add-new-form" method="post" action="">
+  <fieldset>
+    <legend>New Employee</legend>
+    <div class="form-group">
+      <label for="first" class="col-xs-12 col-sm-2 col-md-2 control-label">First</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <input class="form-control" type="text" maxlength="100" ng-model="user.first" focus-me="true" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="last" class="col-xs-12 col-sm-2 col-md-2 control-label">Last</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <input class="form-control" type="text" maxlength="100" ng-model="user.last" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="title" class="col-xs-12 col-sm-2 col-md-2 control-label">Title</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <input class="form-control" type="text" maxlength="100" ng-model="user.title" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select" class="col-xs-12 col-sm-2 col-md-2 control-label">Location</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <select class="form-control" ng-model="user.location" required >
+          <option value="Austin">Austin</option>
+          <option value="Dallas">Dallas</option>
+          <option value="Houston">Houston</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email" class="col-xs-12 col-sm-2 col-md-2 control-label">Email</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+      	<input class="form-control" type="text" maxlength="100" name="email" ng-model="user.email" required check-available input-mask-email />
+        <div class="user-help text-danger small" ng-show="AddNewForm.email.$dirty && AddNewForm.email.$error.emailAvailable">
+              <span>Email already in use.</span>
+          </div> 
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phone" class="col-xs-12 col-sm-2 col-md-2 control-label">Phone</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <input class="form-control" type="text" name="phone" ng-model="user.phone" input-mask-phone check-available required />
+        <div class="user-help text-danger small" ng-show="AddNewForm.phone.$dirty && AddNewForm.phone.$error.phoneAvailable">
+              <span ng-show="AddNewForm.phone.$error.phoneAvailable">Phone already in use.</span>
+          </div> 
+      </div>
+    </div>
+    <div class="form-group">
+    	<div class="col-xs-12 col-sm-6 col-md-6 col-sm-offset-2 col-md-offset-2">
+        	<button class="btn btn-primary" hr-only ng-disabled="AddNewForm.$invalid" id="add-new-btn" ng-click="add_new(user)">Save <span class="glyphicon glyphicon-floppy-disk"></span></button>
+            <a href="#/" class="btn">Cancel</a>
+        </div>
+    </div>
+  </fieldset>
+</form>
+</div>
+</div>

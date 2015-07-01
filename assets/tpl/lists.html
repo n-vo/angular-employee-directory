@@ -1,0 +1,41 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Employee Directory</h3>
+  </div>
+  <div class="panel-body">
+    
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+            <th class="col-xs-2 col-sm-2 col-md-2"><a href ng-click="sort('first');">Name <span class="glyphicon" ng-show="order=='first'" ng-class="reverse ? 'glyphicon-sort-by-alphabet-alt' : 'glyphicon-sort-by-alphabet' "></a></th>
+            <th class="no-show col-xs-2 col-sm-2 col-md-2"><a href ng-click="sort('title');">Title <span class="glyphicon" ng-show="order=='title'" ng-class="reverse ? 'glyphicon-sort-by-alphabet-alt' : 'glyphicon-sort-by-alphabet' "></a></th>
+            <th class="no-show col-xs-2 col-sm-2 col-md-2"><a href ng-click="sort('location');">Location <span class="glyphicon" ng-show="order=='location'" ng-class="reverse ? 'glyphicon-sort-by-alphabet-alt' : 'glyphicon-sort-by-alphabet' "></a></th>
+            <th class="no-show col-xs-2 col-sm-2 col-md-2"><a href ng-click="sort('email');">Email <span class="glyphicon" ng-show="order=='email'" ng-class="reverse ? 'glyphicon-sort-by-alphabet-alt' : 'glyphicon-sort-by-alphabet' "></a></th>
+            <th class="col-xs-2 col-sm-2 col-md-2"><a href ng-click="sort('phone');">Phone<span class="glyphicon" ng-show="order=='phone'" ng-class="reverse ? 'glyphicon-sort-by-order-alt' : 'glyphicon-sort-by-order' "></a></th>
+            <th class="col-xs-1 col-sm-1 col-md-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr dir-paginate="user in users | filter: query | orderBy : order : reverse | itemsPerPage: pageSize" current-page="currentPage" ng-click="edit(user)" class="hover">
+            <td class="col-xs-2 col-sm-2 col-md-2">{{user.first}} {{user.last}}</td>
+            <td class="no-show col-xs-2 col-sm-2 col-md-2">{{user.title}}</td>
+            <td class="no-show col-xs-2 col-sm-2 col-md-2">{{user.location}}</td>
+            <td class="no-show col-xs-2 col-sm-2 col-md-2">{{user.email}}</td>
+            <td class="col-xs-2 col-sm-2 col-md-2">{{user.phone}}</td>
+            <td class="col-xs-1 col-sm-1 col-md-1">
+                <a href ng-click="edit(user)"><span ng-class="isLoggedIn ? 'glyphicon-edit' : 'glyphicon-eye-open'" class="glyphicon" aria-hidden="true"></span></a>				
+                <a href ng-show="isLoggedIn" ng-click="delete(user); $event.stopPropagation();"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+    <a class="btn btn-primary" ng-show="isLoggedIn" href="#/add-user">Add <span class="glyphicon glyphicon-user"></span></a>
+
+ </div>
+</div>
+
+<div class="pagination-wrapper text-center">
+    <div class="pagination pagination-sm">
+	    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="assets/tpl/dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">HR Only</h3>
+  </div>
+  <div class="panel-body">
+    
+<form class="form-horizontal" novalidate name="LoginForm" id="login-form" method="post" action="">
+  <fieldset>
+    <legend>Login</legend>
+    <div class="form-group">
+      <label for="first" class="col-xs-12 col-sm-2 col-md-2 control-label">Username</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <input class="form-control" type="text" maxlength="100" ng-model="user.username" focus-me="true" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="last" class="col-xs-12 col-sm-2 col-md-2 control-label">Password</label>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <input class="form-control" type="text" maxlength="100" ng-model="user.password" required />
+        <div class="user-help text-danger small" ng-show="loginFail">
+        	<span>Login failed! You have {{errAllow}} more time{{errAllow > 1 ? 's' : ''}} to try again.</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+    	<div class="col-xs-12 col-sm-6 col-md-6 col-sm-offset-2 col-md-offset-2">
+        	<button type="button" class="btn btn-primary" ng-disabled="LoginForm.$invalid" id="login-btn" ng-click="login(user)">Login<span class="glyphicon glyphicon-log-in"></span></button>
+            <a href="#/" class="btn btn-link">Cancel</a>
+        </div>
+    </div>
+  </fieldset>
+</form>
+</div>
+</div>
